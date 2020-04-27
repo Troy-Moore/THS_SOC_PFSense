@@ -1,0 +1,68 @@
+<form>
+  <label>Proxy Blocks</label>
+  <fieldset submitButton="false">
+    <input type="multiselect" token="category" searchWhenChanged="true">
+      <label>Category</label>
+      <choice value="*">All</choice>
+      <initialValue>*</initialValue>
+      <delimiter> OR category= </delimiter>
+      <fieldForLabel>category</fieldForLabel>
+      <fieldForValue>category</fieldForValue>
+      <search>
+        <query>index=squid sourcetype=squidblock | stats count by category</query>
+        <earliest>-24h@h</earliest>
+        <latest>now</latest>
+      </search>
+      <default>*</default>
+    </input>
+    <input type="time" token="field1">
+      <label></label>
+      <default>
+        <earliest>-24h@h</earliest>
+        <latest>now</latest>
+      </default>
+    </input>
+  </fieldset>
+  <row>
+    <panel>
+      <chart>
+        <title>Proxy Blocks By Category</title>
+        <search>
+          <query>index=squid sourcetype=squidblock category=$category$ | stats count by category</query>
+          <earliest>$field1.earliest$</earliest>
+          <latest>$field1.latest$</latest>
+        </search>
+        <option name="charting.chart">pie</option>
+        <option name="charting.drilldown">none</option>
+        <option name="refresh.display">progressbar</option>
+      </chart>
+    </panel>
+    <panel>
+      <chart>
+        <title>Proxy Block by Host</title>
+        <search>
+          <query>index=squid sourcetype=squidblock category=$category$  | stats count by src_ip</query>
+          <earliest>$field1.earliest$</earliest>
+          <latest>$field1.latest$</latest>
+        </search>
+        <option name="charting.chart">pie</option>
+        <option name="charting.drilldown">none</option>
+        <option name="refresh.display">progressbar</option>
+      </chart>
+    </panel>
+  </row>
+  <row>
+    <panel>
+      <table>
+        <search>
+          <query>index=squid  sourcetype=squidblock category=$category$ 
+| table _time, src_ip, category, url</query>
+          <earliest>$field1.earliest$</earliest>
+          <latest>$field1.latest$</latest>
+        </search>
+        <option name="drilldown">none</option>
+        <option name="refresh.display">progressbar</option>
+      </table>
+    </panel>
+  </row>
+</form>

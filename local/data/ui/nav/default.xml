@@ -1,0 +1,28 @@
+<nav search_view="search">
+  <view name="search" default='true' />
+	<collection label="pfSense">
+      <view name="dhcp" />
+	</collection>
+  	<collection label="Squid">
+      <view name="proxy_blocks"/>
+      <view name="web_access" />
+  	</collection>
+  
+  	<collection label="Snort">
+      <view name="snort_overview" />
+  	</collection>
+  
+  <collection label="pf Blocker">
+    <view name="pfblocker_overview"/>
+  	</collection>
+  
+   <collection label="Splunk">
+	<view name="search"  label="Search"/>
+  	<view name="pivot" />
+ 	<view name="reports" />
+  	<view name="alerts" />
+  	<view name="dashboards" />
+  
+  </collection>
+  
+</nav>

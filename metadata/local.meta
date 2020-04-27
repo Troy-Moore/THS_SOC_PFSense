@@ -1,0 +1,38 @@
+[app/ui]
+version = 8.0.1
+modtime = 1587307451.432402100
+
+[app/launcher]
+version = 8.0.1
+modtime = 1587307451.438404600
+
+[nav/default]
+version = 8.0.1
+modtime = 1587851089.625810000
+
+[views/dhcp]
+owner = admin
+version = 8.0.1
+modtime = 1587851524.396803000
+
+[views/pfblocker_overview]
+owner = admin
+version = 8.0.1
+modtime = 1587851854.808319000
+
+[views/proxy_blocks]
+owner = admin
+version = 8.0.1
+modtime = 1587851896.182000000
+
+[views/web_access]
+owner = admin
+version = 8.0.1
+modtime = 1587852029.967405800
+
+[views/snort_overview]
+access = read : [ * ], write : [ admin ]
+export = none
+owner = admin
+version = 8.0.1
+modtime = 1587852104.192598300

@@ -1,0 +1,50 @@
+<form>
+  <label>DHCP</label>
+  <fieldset submitButton="true">
+    <input type="time" token="field1">
+      <label></label>
+      <default>
+        <earliest>-24h@h</earliest>
+        <latest>now</latest>
+      </default>
+    </input>
+  </fieldset>
+  <row>
+    <panel>
+      <title>Hostnames</title>
+      <chart>
+        <search>
+          <query>index=pfsense sourcetype="pfsense:dhcpd" src_interface=* | stats count by hostname</query>
+          <earliest>$field1.earliest$</earliest>
+          <latest>$field1.latest$</latest>
+        </search>
+        <option name="charting.chart">pie</option>
+        <option name="charting.drilldown">none</option>
+      </chart>
+    </panel>
+    <panel>
+      <title>MAC Addresses</title>
+      <chart>
+        <search>
+          <query>index=pfsense sourcetype="pfsense:dhcpd" src_interface=* | stats count by src_mac</query>
+          <earliest>$field1.earliest$</earliest>
+          <latest>$field1.latest$</latest>
+        </search>
+        <option name="charting.chart">pie</option>
+        <option name="charting.drilldown">none</option>
+      </chart>
+    </panel>
+    <panel>
+      <title>IP Addresses</title>
+      <chart>
+        <search>
+          <query>index=pfsense sourcetype="pfsense:dhcpd" src_interface=* | stats count by dest_ip</query>
+          <earliest>$field1.earliest$</earliest>
+          <latest>$field1.latest$</latest>
+        </search>
+        <option name="charting.chart">pie</option>
+        <option name="charting.drilldown">none</option>
+      </chart>
+    </panel>
+  </row>
+</form>
